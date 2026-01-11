@@ -5,7 +5,7 @@ const ProductsPage = () => {
   return (
     <div>
       <h1 className="text-red-500">Products Page</h1>;
-          <Button variant="destructive">Click Me</Button>;
+          <Button >Click Me</Button>;
           <Input placeholder="Type here..." />
     </div>
   );
