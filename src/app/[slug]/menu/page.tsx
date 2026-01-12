@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/prisma";
 
+import RestaurantCategories from "./components/categories";
 import RestaurantHeader from "./components/header";
 
 interface RestaurantMenuPageProps {
@@ -27,11 +28,17 @@ const RestaurantMenuPage = async ({
   }
   const restaurant = await db.restaurant.findUnique({
     where: { slug },
+    include: {
+      menuCategories: {
+        include: {products: true},
+      },
+     },
   });
   return (
     <div>
       {/* importando um cliente component dentro de um server component */}
       <RestaurantHeader restaurant={restaurant} />
+      <RestaurantCategories restaurant={restaurant} />
     </div>
   );
 };
