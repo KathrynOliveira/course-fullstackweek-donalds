@@ -3,17 +3,21 @@
 import { Prisma } from "@prisma/client";
 import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-currency";
+
+import { CartContext } from "../../contexts/cart";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 interface ProductDetailsProps { 
     product: Prisma.ProductGetPayload<{ include: { restaurant: { select: { name: true, avatarImageUrl: true } } } }>;
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
+    const { isOpen, toggleCart } = useContext(CartContext);
     const [quantity, setQuantity] = useState<number>(0);
     const handleDecreaseQuantity = () => {
         setQuantity((prev) => Math.max(prev - 1, 0));
@@ -21,7 +25,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     const handleIncreaseQuantity = () => {
         setQuantity((prev) => prev + 1);
     }
+    const handleAddToCart = () => {
+        toggleCart();
+    }
     return ( 
+        <>
         <div className="relative z-50 rounded-t-3xl p-5 mt-[-1.5rem] flex flex-auto flex-col overflow-hidden">
             <div className="flex-auto overflow-hidden">
                  {/* Restaurante */}
@@ -72,8 +80,21 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                </ScrollArea>
            </div>
 
-            <Button className="rounded-full w-full">Adicionar à sacola</Button>
-        </div>
+            <Button className="rounded-full w-full" onClick={handleAddToCart}>Adicionar à sacola</Button>
+            </div>
+            <Sheet>
+                <SheetTrigger>Open</SheetTrigger>
+                <SheetContent>
+                    <SheetHeader>
+                    <SheetTitle>Are you absolutely sure?</SheetTitle>
+                    <SheetDescription>
+                        This action cannot be undone. This will permanently delete your account
+                        and remove your data from our servers.
+                    </SheetDescription>
+                    </SheetHeader>
+                </SheetContent>
+            </Sheet>
+        </>
      );
 }
  
