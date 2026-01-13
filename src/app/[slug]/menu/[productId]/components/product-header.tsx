@@ -16,7 +16,7 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
     const handleBackClick = () => router.back(); // voltar para a página anterior
 
     return ( 
-         <div className="relative w-full h-[300px]">
+         <div className="relative w-full min-h-[300px]">
             <Button
                 variant="secondary"
                 size="icon"
