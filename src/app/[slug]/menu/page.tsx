@@ -1,8 +1,5 @@
-import { ChevronLeftIcon, ScrollTextIcon } from "lucide-react";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
 import { db } from "@/lib/prisma";
 
 import RestaurantCategories from "./components/categories";
@@ -14,7 +11,7 @@ interface RestaurantMenuPageProps {
 }
 
 const isConsumptionMethodValid = (consumptionMethod: string) => {
-  return ["DINE_IN", "TAKEAWAY"].includes(consumptionMethod.toUpperCase());
+  return ["DINE_IN", "TAKEWAY"].includes(consumptionMethod.toUpperCase());
 };
 
 const RestaurantMenuPage = async ({

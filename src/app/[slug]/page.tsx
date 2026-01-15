@@ -12,6 +12,7 @@ interface RestaurantPageProps {
 const RestaurantPage = async ({ params }: RestaurantPageProps) => {
   const { slug } = await params;
   const restaurant = await getRestaurantBySlug(slug);
+
   if (!restaurant) {
     return notFound();
   }
@@ -39,15 +40,15 @@ const RestaurantPage = async ({ params }: RestaurantPageProps) => {
       {/*Menu*/}
       <div className="grid grid-cols-2 pt-14">
         <ConsumptionMethodOption
-          slug={slug}
+          slug={restaurant.slug}
           option="DINE_IN"
           imageUrl="/dine_in.png"
           imageAlt="Para comer aqui"
           buttonText="Para comer aqui"
         />
         <ConsumptionMethodOption
-          slug={slug}
-          option="TAKEAWAY"
+          slug={restaurant.slug}
+          option="TAKEWAY"
           imageUrl="/takeaway.png"
           imageAlt="Para levar"
           buttonText="Para levar"
