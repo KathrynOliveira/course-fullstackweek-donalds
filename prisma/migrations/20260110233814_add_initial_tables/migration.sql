@@ -2,7 +2,7 @@
 CREATE TYPE "OrderStatus" AS ENUM ('PENDING', 'IN_PREPARATION', 'FINISHED');
 
 -- CreateEnum
-CREATE TYPE "ConsumptionMethod" AS ENUM ('TAKEWAY', 'DINE_IN');
+CREATE TYPE "ConsumptionMethod" AS ENUM ('TAKEAWAY', 'DINE_IN');
 
 -- CreateTable
 CREATE TABLE "Restaurant" (
