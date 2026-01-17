@@ -3,6 +3,7 @@ import { ConsumptionMethod } from "@prisma/client";
 
 import { removeCpfPunctuation } from "@/helpers/cpf";
 import { db } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 // Deve ser o primeiro import do arquivo
 
@@ -58,4 +59,6 @@ export const createOrder = async (input: CreateOrderProps) => {
       restaurantId: restaurant.id,
     },
   });
+    
+  redirect(`/${input.slug}/orders`); // Redireciona para a página de pedidos do restaurante
 };
