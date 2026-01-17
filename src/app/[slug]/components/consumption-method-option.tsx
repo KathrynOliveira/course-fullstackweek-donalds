@@ -15,8 +15,8 @@ interface ConsumptionMethodOptionProps {
 
 const ConsumptionMethodOption = ({
   slug,
-  imageUrl,
   imageAlt,
+  imageUrl,
   buttonText,
   option,
 }: ConsumptionMethodOptionProps) => {
@@ -27,12 +27,11 @@ const ConsumptionMethodOption = ({
           <Image
             src={imageUrl}
             fill
-            sizes="80px"
             alt={imageAlt}
             className="object-contain"
           />
         </div>
-        <Button variant="secondary" className="rounded-full" asChild> {/* asChild - permite usar o Link como filho do Button mantendo os estilos do Button */}
+        <Button variant="secondary" className="rounded-full" asChild>
           <Link href={`/${slug}/menu?consumptionMethod=${option}`}>
             {buttonText}
           </Link>
