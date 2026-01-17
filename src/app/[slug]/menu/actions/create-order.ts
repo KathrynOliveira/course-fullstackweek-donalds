@@ -60,5 +60,5 @@ export const createOrder = async (input: CreateOrderProps) => {
     },
   });
     
-  redirect(`/${input.slug}/orders`); // Redireciona para a página de pedidos do restaurante
+  redirect(`/${input.slug}/orders?cpf=${removeCpfPunctuation(input.customerCpf)}`); // Redireciona para a página de pedidos do restaurante
 };

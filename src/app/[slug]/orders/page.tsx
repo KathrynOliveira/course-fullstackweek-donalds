@@ -17,6 +17,9 @@ const OrderPage = async ({ searchParams }: OrderPageProps) => {
         return <CpfForm />;
     }
     const orders = await db.order.findMany({
+        orderBy: {
+            createdAt: "desc",
+        },
         where: { 
             customerCpf: removeCpfPunctuation(cpf),
         },
