@@ -19,10 +19,11 @@ const RestaurantMenuPage = async ({
   searchParams,
 }: RestaurantMenuPageProps) => {
   const { slug } = await params;
-  const { consumptionMethod } = searchParams;
-  if (!isConsumptionMethodValid(consumptionMethod)) {
+  const { consumptionMethod } = await searchParams;
+  if (!consumptionMethod || !isConsumptionMethodValid(consumptionMethod)) {
     return notFound();
   }
+
   const restaurant = await db.restaurant.findUnique({
     where: { slug },
     include: {
@@ -31,6 +32,11 @@ const RestaurantMenuPage = async ({
       },
     },
   });
+
+  if (!restaurant) {
+    return notFound();
+  }
+
   return (
     <div>
       {/* importando um cliente component dentro de um server component */}
