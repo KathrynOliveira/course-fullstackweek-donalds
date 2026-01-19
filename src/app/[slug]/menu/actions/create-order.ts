@@ -1,9 +1,9 @@
 "use server";
 import { ConsumptionMethod } from "@prisma/client";
+import { redirect } from "next/navigation";
 
 import { removeCpfPunctuation } from "@/helpers/cpf";
 import { db } from "@/lib/prisma";
-import { redirect } from "next/navigation";
 
 // Deve ser o primeiro import do arquivo
 
